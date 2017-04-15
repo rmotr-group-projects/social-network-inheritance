@@ -17,7 +17,7 @@ class User(object):
             for post in user.posts:
                 if post not in self.timeline:
                     self.timeline.append(post)
-        return self.timeline
+        return sorted(self.timeline, key=lambda student: post.timestamp)
 
     def follow(self, other):
         self.following.append(other)

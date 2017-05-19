@@ -1,10 +1,9 @@
 from datetime import datetime
 from social_network.accounts import *
-from time import sleep
 
 
 class Post(object):
-    def __init__(self, text, timestamp=None or datetime.now()):
+    def __init__(self, text, timestamp=None):
         pass
 
     def set_user(self, user):
@@ -12,12 +11,10 @@ class Post(object):
 
 
 class TextPost(Post):  # Inherit properly
-    def __init__(self, text, timestamp=None or datetime.now()):
+    def __init__(self, text, timestamp=None):
         self.text = text
-        self.timestamp = timestamp
+        self.timestamp = timestamp or datetime.now()
         self.user = None
-        #FU TRAVIS.
-        sleep(.1)
         
 
     def __str__(self):
@@ -26,12 +23,11 @@ class TextPost(Post):  # Inherit properly
         
 
 class PicturePost(Post):  # Inherit properly
-    def __init__(self, text, image_url, timestamp=None or datetime.now()):
+    def __init__(self, text, image_url, timestamp=None):
         self.text = text
         self.image_url = image_url
-        self.timestamp = timestamp
+        self.timestamp = timestamp or datetime.now()
         self.user = None
-        sleep(.1)
         
 
     def __str__(self):
@@ -40,13 +36,12 @@ class PicturePost(Post):  # Inherit properly
 
 
 class CheckInPost(Post):  # Inherit properly
-    def __init__(self, text, latitude, longitude, timestamp=None or datetime.now()):
+    def __init__(self, text, latitude, longitude, timestamp=None):
         self.text = text
         self.latitude = latitude
         self.longitude = longitude
-        self.timestamp = timestamp
+        self.timestamp = timestamp or datetime.now()
         self.user = None
-        sleep(.1)
 
     def __str__(self):
         return '@{} Checked In: "{}"\n\t{}, {}\n\t{}'.format(self.user.first_name,\

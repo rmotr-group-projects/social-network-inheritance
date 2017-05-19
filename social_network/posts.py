@@ -1,6 +1,5 @@
 from datetime import datetime
-from datetime import date
-from accounts import *
+from social_network.accounts import *
 
 
 class Post(object):
@@ -37,7 +36,7 @@ class PicturePost(Post):  # Inherit properly
 
 
 class CheckInPost(Post):  # Inherit properly
-    def __init__(self, text, latitude, longitude, timestamp=None or date.today().strftime("%A, %B %d, %Y")):
+    def __init__(self, text, latitude, longitude, timestamp=None or datetime.now().strftime("%A, %B %d, %Y")):
         self.text = text
         self.latitude = latitude
         self.longitude = longitude

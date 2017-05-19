@@ -31,6 +31,7 @@ class PicturePost(Post):  # Inherit properly
         self.image_url = image_url
         self.timestamp = timestamp
         self.user = None
+        sleep(.1)
         
 
     def __str__(self):
@@ -45,6 +46,7 @@ class CheckInPost(Post):  # Inherit properly
         self.longitude = longitude
         self.timestamp = timestamp
         self.user = None
+        sleep(.1)
 
     def __str__(self):
         return '@{} Checked In: "{}"\n\t{}, {}\n\t{}'.format(self.user.first_name,\

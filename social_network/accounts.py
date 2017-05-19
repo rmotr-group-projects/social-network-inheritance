@@ -10,6 +10,7 @@ class User(object):
     def add_post(self, post):
         post.set_user(self)
         self.posts[post] = post.text
+        
     
     def get_posts(self): #get the user's posts in a list. Used in get_timeline()
         postlist = []
@@ -24,7 +25,7 @@ class User(object):
         for user in self.following:
             for post in user.get_posts():
                 unordered_timeline.append(post)
-        return sorted(unordered_timeline, key=lambda x: x.timestamp, reverse=False)
+        return sorted(unordered_timeline, key=lambda x: x.timestamp, reverse=True)
             
     def follow(self, other):
         self.following[other] = "{} {}".format(other.first_name, other.last_name)

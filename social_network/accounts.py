@@ -10,15 +10,19 @@ class User(object):
 
     def add_post(self, post):
         self.posts.append(post)
-        post.user = self.first_name
+        post.set_user(self)
 
     def get_timeline(self):
+        for user in self.following:
+            self.timeline.extend(user.posts)
+
+        self.timeline = list(set(self.timeline))
         return self.timeline
 
     def follow(self, other):
-        self.following.append(other)
-        self.timeline.extend(other.posts)
-        self.timeline.sort(key=lambda x: x.timestamp)
+        if other not in self.following:
+            self.following.append(other)
+            self.timeline.extend(other.posts)
 
     def __str__(self):
         return '<User: "{0} {1}">'.format(self.first_name, self.last_name).title()

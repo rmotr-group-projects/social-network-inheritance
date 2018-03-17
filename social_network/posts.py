@@ -7,6 +7,9 @@ class Post(object):
         self.timestamp = timestamp
         self.user = None
 
+        if not self.timestamp:
+            self.timestamp = datetime.now()
+
     def set_user(self, user):
         self.user = user
 
@@ -43,5 +46,5 @@ class CheckInPost(Post):  # Inherit properly
 
     def __str__(self):
         ftimestamp = self.timestamp.strftime('%A, %b %d, %Y')
-        return '@{0.first_name} Checked In: "{1}"\n\t{2:.6f}, {3:.6f}\n\t{4}'.format(
+        return '@{0.first_name} Checked In: "{1}"\n\t{2}, {3}\n\t{4}'.format(
             self.user, self.text, self.latitude, self.longitude, ftimestamp)

@@ -14,15 +14,19 @@ class User(object):
 
     def get_timeline(self):
         for user in self.following:
-            self.timeline.extend(user.posts)
+            self.follow(user)
 
-        self.timeline = list(set(self.timeline))
+        self.timeline.sort(key=lambda x: x.timestamp)
         return self.timeline
 
     def follow(self, other):
         if other not in self.following:
             self.following.append(other)
-            self.timeline.extend(other.posts)
+
+        if other.posts:
+            filter_posts = [x for x in other.posts if x not in self.timeline]
+            self.timeline.extend(filter_posts)
+            del filter_posts
 
     def __str__(self):
         return '<User: "{0} {1}">'.format(self.first_name, self.last_name).title()

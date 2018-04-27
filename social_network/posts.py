@@ -1,11 +1,10 @@
 from datetime import datetime
-from social_network.accounts import User
 
 class Post(object):
     def __init__(self, text, timestamp=None):
         self.text = text
-        self.timestamp = timestamp or datetime.now()
-        self.user = None
+        self.timestamp = timestamp 
+
         
     def set_user(self, user):
         self.user = user
@@ -13,6 +12,8 @@ class Post(object):
 class TextPost(Post):
     def __init__(self, text, timestamp=None):
         super(TextPost, self).__init__(text, timestamp)
+        self.user = None
+        
     def __str__(self):
         result = '@{} {}: "{}"\n\t{}'.format(self.user.first_name, self.user.last_name, self.text, self.timestamp.strftime("%A, %b %d, %Y"))
         return result

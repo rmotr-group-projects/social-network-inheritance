@@ -14,7 +14,7 @@ class User(object):
         timeline_posts = []
         for user in self.following:
             timeline_posts += user.posts
-        return timeline_posts
+        return soreted(timeline_posts, key=lambda x: x.timestamp)
         
 
     def follow(self, other):

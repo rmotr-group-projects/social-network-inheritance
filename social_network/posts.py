@@ -1,38 +1,45 @@
 from datetime import datetime
 
+
 class Post(object):
-    def __init__(self, text, timestamp=None):
-        self.text = text
-        self.timestamp = timestamp 
+   def __init__(self, text, timestamp=None):
+      pass
+    
+   def set_user(self, user = None):
+      self.user = user
 
-        
-    def set_user(self, user):
-        self.user = user
-        
-class TextPost(Post):
+
+class TextPost(Post):  
     def __init__(self, text, timestamp=None):
-        super(TextPost, self).__init__(text, timestamp)
-        self.user = None
-        
+       self.text = text
+       self.timestamp = timestamp or datetime.now()
+       self.user = None
+    
     def __str__(self):
-        result = '@{} {}: "{}"\n\t{}'.format(self.user.first_name, self.user.last_name, self.text, self.timestamp.strftime("%A, %b %d, %Y"))
-        return result
-"""
-self.timestamp.strftime("%A, %b %d, %Y")
-"""
-class PicturePost(Post):
+       return '@{} {}: "{}"\n\t{}'.format(self.user.first_name,\
+       self.user.last_name, self.text, self.timestamp.strftime('%A, %b %d, %Y'))
+
+
+class PicturePost(Post):  
     def __init__(self, text, image_url, timestamp=None):
-        super(PicturePost, self).__init__(text, timestamp)
+        self.text = text
         self.image_url = image_url
-    def __str__(self):
-        result = '@{} {}: "{}"\n\t{}\n\t{}'.format(self.user.first_name, self.user.last_name, self.text, self.image_url, self.timestamp.strftime("%A, %b %d, %Y"))
-        return result
+        self.timestamp = timestamp or datetime.now()
+        self.user = None
 
-class CheckInPost(Post):  # Inherit properly
+    def __str__(self):
+        return '@{} {}: "{}"\n\t{}\n\t{}'.format(self.user.first_name,\
+        self.user.last_name, self.text, self.image_url, self.timestamp.strftime('%A, %b %d, %Y'))
+
+
+class CheckInPost(Post):  
     def __init__(self, text, latitude, longitude, timestamp=None):
-        super(CheckInPost, self).__init__(text, timestamp)
+        self.text = text
         self.latitude = latitude
         self.longitude = longitude
+        self.timestamp = timestamp or datetime.now()
+        self.user = None
+
     def __str__(self):
-         result = '@{} Checked In: "{}"\n\t{}, {}\n\t{}'.format(self.user.first_name, self.text, self.latitude, self.longitude, self.timestamp.strftime("%A, %b %d, %Y"))
-         return result
+        return '@{} Checked In: "{}"\n\t{}, {}\n\t{}'.format(self.user.first_name,\
+        self.text, self.latitude, self.longitude, self.timestamp.strftime('%A, %b %d, %Y'))

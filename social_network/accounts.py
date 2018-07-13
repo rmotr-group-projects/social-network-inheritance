@@ -16,7 +16,8 @@ class User(object):
         total_posts = []
         
         for user in self.following:
-            total_posts += user.posts
+            posts = user.posts
+            total_posts += posts
         
         return sorted(total_posts, key = lambda p:p.timestamp, reverse=False)
 

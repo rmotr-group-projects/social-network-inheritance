@@ -19,7 +19,14 @@ class User(object):
             posts = user.posts
             total_posts += posts
         
-        return sorted(total_posts, key = lambda p:p.timestamp, reverse=False)
+        def get_timestamp(a_post):
+            #for a_post in total_posts:
+            return a_post.timestamp
+        
+        #return sorted(total_posts, key = lambda p:p.timestamp, reverse=False)
+        return sorted(total_posts, key = get_timestamp, reverse=False)
+    
+
 
     def follow(self, other):
         self.following.append(other)

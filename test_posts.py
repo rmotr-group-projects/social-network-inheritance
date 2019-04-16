@@ -1,5 +1,4 @@
-from factories import (UserFactory, TextPostFactory, PicturePostFactory,
-                             CheckInPostFactory)
+from factories import (UserFactory, TextPostFactory, PicturePostFactory, CheckInPostFactory)
 
 
 def test_post_default_user():

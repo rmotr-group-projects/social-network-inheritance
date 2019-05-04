@@ -1,13 +1,30 @@
 
 class User(object):
     def __init__(self, first_name, last_name, email):
-        pass
+        self.first_name = first_name
+        self.last_name = last_name
+        self.email = email
+        self.posts = []
+        self.following = []
 
     def add_post(self, post):
-        pass
+        post.user = self.first_name
+        self.posts.append(post)
 
     def get_timeline(self):
-        pass
+        timeline = []
+        for friends in self.following:
+            for posts in friends.posts:
+                timeline.append(posts)
+        #sorting by timestamp
+        timeline.sort(key=lambda x: x.timestamp, reverse=True)
+        return timeline
 
     def follow(self, other):
-        pass
+        self.following.append(other)
+    
+    def __str__(self):
+        return self.first_name + " " + self.last_name
+
+    def __repr__(self):
+        return "[<User: {}>]".format(str(self))

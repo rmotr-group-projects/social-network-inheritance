@@ -2,11 +2,11 @@ from factories import (UserFactory, TextPostFactory, PicturePostFactory,
                              CheckInPostFactory)
 
 
-def test_post_default_user():
+def test_post_default_user(): #passed
     post = TextPostFactory()
     assert post.user == None
 
-def test_post_set_user():
+def test_post_set_user(): #passed
     user = UserFactory()
     post = TextPostFactory()
     post.set_user(user)

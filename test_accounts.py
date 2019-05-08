@@ -3,13 +3,13 @@ from social_network.accounts import User
 from factories import UserFactory, TextPostFactory, PicturePostFactory
 
 
-def test_user_creation():
+def test_user_creation(): #passed
     user = User(first_name='John', last_name='Doe', email='john@doe.com')
     assert user.first_name == 'John'
     assert user.last_name == 'Doe'
     assert user.email == 'john@doe.com'
 
-def test_user_follow():
+def test_user_follow(): #passed
     user1 = UserFactory()
     user2 = UserFactory()
     user1.follow(user2)
@@ -17,7 +17,7 @@ def test_user_follow():
     assert len(user1.following) == 1
     assert user2 in user1.following
 
-def test_add_post():
+def test_add_post(): #passed
     user = UserFactory()
     post1 = TextPostFactory()
     post2 = PicturePostFactory()
@@ -27,7 +27,7 @@ def test_add_post():
 
     assert len(user.posts) == 2
 
-def test_user_timeline():
+def test_user_timeline(): #passed
     """Should only return posts from users I'm following"""
     user1 = UserFactory()
     user2 = UserFactory()

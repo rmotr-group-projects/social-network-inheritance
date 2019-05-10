@@ -13,7 +13,6 @@ class UserFactory(factory.Factory):
     email = factory.LazyAttribute(lambda u: '{}.{}@fake-domain.com'.format(
         u.first_name, u.last_name))
 
-
 class PostFactory(factory.Factory):
     class Meta:
         model = posts.Post
@@ -21,11 +20,9 @@ class PostFactory(factory.Factory):
     text = 'Sample post text'
     timestamp = datetime(2017, 1, 10)
 
-
 class TextPostFactory(PostFactory):
     class Meta:
         model = posts.TextPost
-
 
 class PicturePostFactory(PostFactory):
     class Meta:

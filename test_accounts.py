@@ -43,11 +43,9 @@ def test_user_timeline():
     user2.add_post(user2_post2)
     user3.add_post(user3_post1)
     user4.add_post(user4_post1)
-
     # user1 follows user2 and user3
     user1.follow(user2)
     user1.follow(user3)
-
     # 2 posts from user2 and 1 from user3
     # post from user4 is excluded
     assert len(user1.get_timeline()) == 3

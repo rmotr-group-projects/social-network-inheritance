@@ -1,5 +1,5 @@
-from social_network.accounts import User
-from social_network.posts import TextPost, PicturePost, CheckInPost
+from accounts import User
+from posts import TextPost, PicturePost, CheckInPost
 
 
 def main():

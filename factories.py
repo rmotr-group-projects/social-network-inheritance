@@ -16,7 +16,7 @@ class UserFactory(factory.Factory):
 
 class PostFactory(factory.Factory):
     class Meta:
-        model = posts.Post
+        model = posts.Post 
 
     text = 'Sample post text'
     timestamp = datetime(2017, 1, 10)

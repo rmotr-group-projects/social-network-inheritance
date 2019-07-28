@@ -1,36 +1,40 @@
 from datetime import datetime
 
-# Please remove the comments and 
-# create these classes as it corresponds:
-# (your tests will fail if you don't comment out these classes)
 
-# class Post(object):
-#     def __init__(self, text, timestamp=None):
-#         pass
-#
-#     def set_user(self, user):
-#         pass
+class Post(object):
+    def __init__(self, user=None, text=None, timestamp=None):
+        self.user = user
+        self.text = text
+        self.timestamp = timestamp
 
-
-# class TextPost(...):  # Inherit properly
-#     def __init__(self, text, timestamp=None):
-#         pass
-#
-#     def __str__(self):
-#         pass
+    def set_user(self, user):
+        self.user = user
+        
+    def __repr__(self):
+        return '{}'.format(self)
 
 
-# class PicturePost(...):  # Inherit properly
-#     def __init__(self, text, image_url, timestamp=None):
-#         pass
-#
-#     def __str__(self):
-#         pass
+class TextPost(Post):
+    def __init__(self, user=None, text=None, timestamp=None):
+        super(TextPost, self).__init__(user, text, timestamp)
+
+    def __str__(self):
+        return '{}: "{}"\n\t{}'.format(self.user, self.text, self.timestamp.strftime('%A, %b %d, %Y'))
+
+class PicturePost(Post):
+    def __init__(self, text, image_url, timestamp=None):
+        super(PicturePost, self).__init__(self, text, timestamp)
+        self.image_url = image_url
+
+    def __str__(self):
+        return '{}: "{}"\n\t{}\n\t{}'.format(self.user, self.text, self.image_url, self.timestamp.strftime('%A, %b %d, %Y'))
 
 
-# class CheckInPost(...):  # Inherit properly
-#     def __init__(self, text, latitude, longitude, timestamp=None):
-#         pass
-#
-#     def __str__(self):
-#         pass
+class CheckInPost(Post):
+    def __init__(self, text, latitude, longitude, timestamp=None):
+        super(CheckInPost, self).__init__(self, text, timestamp)
+        self.lat = latitude
+        self.long = longitude
+
+    def __str__(self):
+        return '@{} Checked In: "{}"\n\t{}, {}\n\t{}'.format(self.user.first_name, self.text, self.lat, self.long, self.timestamp.strftime('%A, %b %d, %Y'))

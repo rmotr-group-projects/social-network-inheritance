@@ -27,3 +27,4 @@ def test_post_string_representation():
     assert str(post2) == '@Kevin Watson: "Sample post text"\n\thttp://fake-domain.com/images/sample.jpg\n\tTuesday, Jan 10, 2017'
 
     assert str(post3) == '@Kevin Checked In: "Sample post text"\n\t-34.603722, -58.381592\n\tTuesday, Jan 10, 2017'
+

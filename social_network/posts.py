@@ -4,33 +4,56 @@ from datetime import datetime
 # create these classes as it corresponds:
 # (your tests will fail if you don't comment out these classes)
 
-# class Post(object):
-#     def __init__(self, text, timestamp=None):
-#         pass
-#
-#     def set_user(self, user):
-#         pass
+class Post(object):
+    def __init__(self, text, timestamp=None):
+        self.text = text
+        self.timestamp = timestamp
+        self.user = None
+
+    def set_user(self, user):
+        self.user = user
+        
+    def _date_to_string(self):
+        return self.timestamp.strftime("%A, %b %d, %Y")
 
 
-# class TextPost(...):  # Inherit properly
-#     def __init__(self, text, timestamp=None):
-#         pass
-#
-#     def __str__(self):
-#         pass
+class TextPost(Post):  # Inherit properly
+    def __init__(self, text, timestamp=None):
+         super(TextPost, self).__init__(text, timestamp)
+
+    def __str__(self):
+         return "@{name}: \"{text}\"\n\t{time}".format(
+            name=self.user.full_name,
+            text=self.text,
+            time=self._date_to_string()
+            )
 
 
-# class PicturePost(...):  # Inherit properly
-#     def __init__(self, text, image_url, timestamp=None):
-#         pass
-#
-#     def __str__(self):
-#         pass
+class PicturePost(Post):  # Inherit properly
+    def __init__(self, text, image_url, timestamp=None):
+         super(PicturePost, self).__init__(text, timestamp)
+         self.image_url = image_url
+
+    def __str__(self):
+         return "@{name}: \"{text}\"\n\t{url}\n\t{time}".format(
+             name=self.user.full_name,
+             text=self.text,
+             url = self.image_url,
+             time=self._date_to_string()
+             )
 
 
-# class CheckInPost(...):  # Inherit properly
-#     def __init__(self, text, latitude, longitude, timestamp=None):
-#         pass
-#
-#     def __str__(self):
-#         pass
+class CheckInPost(Post):  # Inherit properly
+    def __init__(self, text, latitude, longitude, timestamp=None):
+         super(CheckInPost, self).__init__(text, timestamp)
+         self.latitude = latitude
+         self.longitude = longitude
+
+    def __str__(self):
+         return "@{fname} Checked In: \"{text}\"\n\t{latitude}, {longitude}\n\t{time}".format(
+             fname=self.user.first_name,
+             text=self.text,
+             latitude=self.latitude,
+             longitude=self.longitude,
+             time=self._date_to_string()
+             )

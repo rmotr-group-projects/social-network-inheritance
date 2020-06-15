@@ -1,18 +1,18 @@
 from factories import (UserFactory, TextPostFactory, PicturePostFactory,
                              CheckInPostFactory)
 
-
+#all passed
 def test_post_default_user():
     post = TextPostFactory()
     assert post.user == None
 
-def test_post_set_user():
+def test_post_set_user():                       
     user = UserFactory()
     post = TextPostFactory()
     post.set_user(user)
     assert post.user == user
 
-def test_post_string_representation():
+def test_post_string_representation():          
     user = UserFactory(first_name='Kevin', last_name='Watson')
     post1 = TextPostFactory()
     post2 = PicturePostFactory()

@@ -17,7 +17,7 @@ def test_user_follow():
     assert len(user1.following) == 1
     assert user2 in user1.following
 
-def test_add_post():
+def test_add_post():                    #passed up to here
     user = UserFactory()
     post1 = TextPostFactory()
     post2 = PicturePostFactory()
